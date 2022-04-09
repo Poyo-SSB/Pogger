@@ -9,7 +9,7 @@ public class BaseLogger
 
     internal BaseLogger(string source) => this.source = source;
 
-    private readonly object logLock = new object();
+    private readonly object logLock = new();
 
     public void Log(object message, MessageType severity)
     {
