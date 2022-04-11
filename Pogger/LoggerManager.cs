@@ -16,7 +16,7 @@ public static class LoggerManager
         return newLogger;
     }
 
-    private static void LoggerInternalLogged(InternalLogEventArgs e)
+    private static void LoggerInternalLogged(LogEventArgs e)
     {
         if (!Directory.Exists("logs"))
         {
@@ -29,7 +29,7 @@ public static class LoggerManager
         {
             File.AppendAllText(fileName, e.Message + "\n");
 
-            OnLog?.Invoke(new LogEventArgs(e.Message));
+            OnLog?.Invoke(new LogEventArgs(e.Severity, e.Message));
         }
     }
 }
