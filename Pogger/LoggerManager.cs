@@ -4,16 +4,19 @@ public static class LoggerManager
 {
     public static MessageType Severity { get; set; } = MessageType.Info;
 
+    public delegate void LogEventHandler(LogEventArgs e);
+    public static event LogEventHandler OnLog;
+
     public static BaseLogger CreateLogger(string source)
     {
         var newLogger = new BaseLogger(source);
 
-        newLogger.OnLog += Write;
+        newLogger.OnInternalLog += LoggerInternalLogged;
 
         return newLogger;
     }
 
-    private static void Write(LogEventArgs e)
+    private static void LoggerInternalLogged(InternalLogEventArgs e)
     {
         if (!Directory.Exists("logs"))
         {
@@ -25,6 +28,8 @@ public static class LoggerManager
         if (e.Severity <= Severity)
         {
             File.AppendAllText(fileName, e.Message + "\n");
+
+            OnLog?.Invoke(new LogEventArgs(e.Message));
         }
     }
 }
