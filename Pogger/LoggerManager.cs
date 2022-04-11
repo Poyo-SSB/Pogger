@@ -5,7 +5,7 @@ public static class LoggerManager
     public static MessageType Severity { get; set; } = MessageType.Info;
 
     public delegate void LogEventHandler(LogEventArgs e);
-    public static event LogEventHandler OnLog;
+    public static event LogEventHandler? OnLog;
 
     public static BaseLogger CreateLogger(string source)
     {
