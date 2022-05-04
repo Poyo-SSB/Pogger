@@ -16,7 +16,7 @@ public class BaseLogger
         lock (this.logLock)
         {
             string label = String.Empty;
-            string time = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+            string time = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             switch (severity)
             {

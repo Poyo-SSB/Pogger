@@ -23,7 +23,7 @@ public static class LoggerManager
             Directory.CreateDirectory("logs");
         }
 
-        string fileName = $"./logs/{DateTime.Now:dd-MM-yyyy}.log";
+        string fileName = $"./logs/{DateTime.Now:yyyy-MM-dd}.log";
 
         if (e.Severity <= Severity)
         {
