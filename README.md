@@ -9,6 +9,8 @@ You're a capable-looking feller, aren't you? I trust you to figure it out.
 ## Usage
 
 ```cs
+global using static Guobbers.Logger;
+
 using Pogger;
 
 namespace Guobbers;
