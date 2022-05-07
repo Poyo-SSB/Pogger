@@ -42,10 +42,12 @@ public class BaseLogger
                     break;
             }
 
-            Console.Write($"[{label} {time} ({this.source})] ");
+            var output = severity == MessageType.Error ? Console.Error : Console.Out;
+
+            output.Write($"[{label} {time} ({this.source})] ");
             Console.ResetColor();
 
-            Console.WriteLine(message);
+            output.WriteLine(message);
 
             this.OnInternalLog?.Invoke(new LogEventArgs(severity, $"[{label} {time} ({this.source})] {message}"));
         }
