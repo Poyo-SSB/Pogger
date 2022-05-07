@@ -44,12 +44,14 @@ public class BaseLogger
 
             var output = severity == MessageType.Error ? Console.Error : Console.Out;
 
-            output.Write($"[{label} {time} ({this.source})] ");
+            var header = $"[{label} {time} ({this.source})]";
+
+            output.Write($"{header} ");
             Console.ResetColor();
 
             output.WriteLine(message);
 
-            this.OnInternalLog?.Invoke(new LogEventArgs(severity, $"[{label} {time} ({this.source})] {message}"));
+            this.OnInternalLog?.Invoke(new LogEventArgs(severity, $"{header} {message}"));
         }
     }
 
