@@ -5,13 +5,13 @@ public static class LoggerManager
     public static MessageType Severity { get; set; } = MessageType.Info;
 
     public delegate void LogEventHandler(LogEventArgs e);
-    public static event LogEventHandler? OnLog;
+    public static event LogEventHandler? Logged;
 
     public static BaseLogger CreateLogger(string source)
     {
         var newLogger = new BaseLogger(source);
 
-        newLogger.OnInternalLog += LoggerInternalLogged;
+        newLogger.InternalLogged += LoggerInternalLogged;
 
         return newLogger;
     }
@@ -29,7 +29,7 @@ public static class LoggerManager
         {
             File.AppendAllText(fileName, e.Message + "\n");
 
-            OnLog?.Invoke(new LogEventArgs(e.Severity, e.Message));
+            Logged?.Invoke(new LogEventArgs(e.Severity, e.Message));
         }
     }
 }

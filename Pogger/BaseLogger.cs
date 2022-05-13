@@ -5,7 +5,7 @@ public class BaseLogger
     private readonly string source;
 
     internal delegate void InternalLogEventHandler(LogEventArgs e);
-    internal event InternalLogEventHandler? OnInternalLog;
+    internal event InternalLogEventHandler? InternalLogged;
 
     internal BaseLogger(string source) => this.source = source;
 
@@ -51,7 +51,7 @@ public class BaseLogger
 
             output.WriteLine(message);
 
-            this.OnInternalLog?.Invoke(new LogEventArgs(severity, $"{header} {message}"));
+            this.InternalLogged?.Invoke(new LogEventArgs(severity, $"{header} {message}"));
         }
     }
 
