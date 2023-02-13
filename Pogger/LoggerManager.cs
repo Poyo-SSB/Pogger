@@ -7,11 +7,14 @@ public static class LoggerManager
     public delegate void LogEventHandler(LogEventArgs e);
     public static event LogEventHandler? Logged;
 
-    public static BaseLogger CreateLogger(string source)
+    public static BaseLogger CreateLogger(string source, bool withLogs = true)
     {
         var newLogger = new BaseLogger(source);
 
-        newLogger.InternalLogged += LoggerInternalLogged;
+        if (withLogs)
+        {
+            newLogger.InternalLogged += LoggerInternalLogged;
+        }
 
         return newLogger;
     }
