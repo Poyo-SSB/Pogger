@@ -1,5 +1,7 @@
 # Pogger
 
+![Nuget](https://img.shields.io/nuget/v/Pogger)
+
 Lightweight logging for personal projects.
 
 ## Installation
