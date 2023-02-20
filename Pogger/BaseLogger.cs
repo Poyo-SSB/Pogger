@@ -11,7 +11,7 @@ public class BaseLogger
 
     private readonly object logLock = new();
 
-    public void Log(object message, MessageType severity)
+    public void Log(object? message, MessageType severity)
     {
         lock (this.logLock)
         {
@@ -55,9 +55,9 @@ public class BaseLogger
         }
     }
 
-    public void Error(object message) => this.Log(message, MessageType.Error);
-    public void Warn(object message) => this.Log(message, MessageType.Warn);
-    public void Info(object message) => this.Log(message, MessageType.Info);
-    public void Verbose(object message) => this.Log(message, MessageType.Verbose);
-    public void Debug(object message) => this.Log(message, MessageType.Debug);
+    public void Error(object? message) => this.Log(message, MessageType.Error);
+    public void Warn(object? message) => this.Log(message, MessageType.Warn);
+    public void Info(object? message) => this.Log(message, MessageType.Info);
+    public void Verbose(object? message) => this.Log(message, MessageType.Verbose);
+    public void Debug(object? message) => this.Log(message, MessageType.Debug);
 }
